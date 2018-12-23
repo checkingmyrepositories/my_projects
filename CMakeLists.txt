@@ -11,3 +11,5 @@ add_executable(my_projects
 add_executable(h_stek "Kurdyumov Dima/h_stek.cpp")
 add_executable(lifo "Kurdyumov Dima/lifo.cpp")
 add_executable(fifo "Kurdyumov Dima/fifo.cpp")
+add_executable(Queue "Kurdyumov Dima/Queue.cpp")
+add_executable(Stack "Kurdyumov Dima/Stack.cpp")

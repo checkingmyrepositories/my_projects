@@ -7,8 +7,6 @@ struct stk{
     stk *sled;
 };
 
-
-
 void postroenie(stk **no, stk **ko){
     int el;
     stk *t;
