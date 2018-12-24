@@ -2,24 +2,24 @@
 #include <cstdlib>
 using namespace std;
 
-struct stk{
+struct node{
     int elem;
-    stk *sled;
+    node *sled;
 };
 
-void postroenie(stk **no, stk **ko){
+void postroenie(node **no, node **ko){
     int el;
-    stk *t;
+    node *t;
     cin >> el;
     if (el != 0){
-        t = new(stk);
+        t = new(node);
         (*t).elem = el;
         (*t).sled = nullptr;
         *no = t;
         *ko = t;
         cin >> el;
         while (el!=0){
-            t = new(stk);
+            t = new(node);
             (*t).elem = el;
             (*t).sled = nullptr;
             (**ko).sled = t;
@@ -29,32 +29,21 @@ void postroenie(stk **no, stk **ko){
         t = nullptr; *no=t; *ko = t;}
 }
 
-/*void Deleting(stk **top, int N){
-    stk *q = *top; //создаем указатель типа comp и приравниваем(ставим) его на вершину стека
-    stk *prev = nullptr;//создаем указатель на предыдуший элемент, с начала он будет пустым
-    while (q != nullptr) {//пока указатель q не путой, мы его будем проверять, если он все же пусть цикл заканчивается
-        if ((*q).elem == N) {//если Data элемента равна числу, которое нам нужно удалить
-            if (q == *top) {//если такой указатель равен вершине, то есть элемент, который нам нужно удалить - вершина
-                *top = (*q).sled;//передвигаем вершину на следующий элемент
-                free(q);
-                (*q).sled= nullptr;
-                //q->Data=NULL;
-            }
-            else//если элемент последний или находится между двумя другими элементами
-            {
-                (*prev).sled = (*q).sled;//Проводим связь от предыдущего элемента к следующему
-                free(q);//очищаем ячейку
-                (*q).sled= nullptr;
-                //q->Data=NULL;
-            }
-        }// если Data элемента НЕ равна числу, которое нам нужно удалить
-        prev = q; //запоминаем текущую ячейку как предыдущую
-        q = (*q).sled;//перемещаем указатель q на следующий элемент
+void Adding(node **no, node **ko, int el){
+    node *r; r = new(node);
+    (*r).elem = el;
+    (*r).sled = nullptr;
+    if(*no != nullptr) {
+        (**ko).sled = r;
+        *ko = r;
+    }   else {
+        *no = r;
+        *ko = r;
     }
-}*/
+}
 
-void print(stk *no, stk *ko){
-    stk *q;
+void print(node *no){
+    node *q;
     q = no;
     while(q != nullptr){
         cout << (*q).elem << ' ';
@@ -63,14 +52,26 @@ void print(stk *no, stk *ko){
     cout << endl;
 }
 
+void Ydalenie(node **no, node **ko, int &klad){
+    node *q;
+    if (*no == nullptr) cout << "deleting impossible because queue is empty";
+    else {
+        klad = (**no).elem;
+        q = *no;
+        *no = (**no).sled;
+        delete(q);
+    }
+    cout << "deleted item: " << klad << endl;
+}
+
 int main() {
-    stk *no = nullptr;
-    stk *ko = nullptr;
+    int start=0;
+    node *no = nullptr;
+    node *ko = nullptr;
     postroenie(&no, &ko);
-    print(no, ko);
-
-
-
+    Adding(&no, &ko, 555);
+    Ydalenie(&no, &ko, start);
+    print(no);
     return 0;
 }
 

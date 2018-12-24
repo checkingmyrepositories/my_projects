@@ -2,20 +2,20 @@
 #include <cstdlib>
 using namespace std;
 
-struct stk{
+struct node{
     int elem;
-    stk *sled;
+    node *sled;
 };
 
-void W_S(stk **top, int &el){
-    stk *q;
-    q = new(stk);
+void W_S(node **top, int &el){
+    node *q;
+    q = new(node);
     (*q).elem = el;
     (*q).sled = *top;
     *top = q;
 }
 
-void postroenie_not_full_keyboard(stk **top){
+void postroenie_not_full_keyboard(node **top){
     int el;
     cin >> el;
     while(el != 0){
@@ -24,21 +24,21 @@ void postroenie_not_full_keyboard(stk **top){
     }
 }
 
-void postroenie_full_keyboard(stk **top){
+void postroenie_full_keyboard(node **top){
     int el;
     cin >> el;
     while (el!=0){
-        stk *t;
-        t = new(stk);
+        node *t;
+        t = new(node);
         (*t).elem = el;
         (*t).sled = *top;
         *top = t; cin >> el;
     }
 }
 
-void Deleting(stk **top, int N){
-    stk *q = *top; //создаем указатель типа comp и приравниваем(ставим) его на вершину стека
-    stk *prev = nullptr;//создаем указатель на предыдуший элемент, с начала он будет пустым
+void Deleting(node **top, int N){
+    node *q = *top; //создаем указатель типа comp и приравниваем(ставим) его на вершину стека
+    node *prev = nullptr;//создаем указатель на предыдуший элемент, с начала он будет пустым
     while (q != nullptr) {//пока указатель q не путой, мы его будем проверять, если он все же пусть цикл заканчивается
         if ((*q).elem == N) {//если Data элемента равна числу, которое нам нужно удалить
             if (q == *top) {//если такой указатель равен вершине, то есть элемент, который нам нужно удалить - вершина
@@ -60,8 +60,8 @@ void Deleting(stk **top, int N){
     }
 }
 
-void print(stk *top){
-    stk *q = top;
+void print(node *top){
+    node *q = top;
     while(q != nullptr){
         cout << (*q).elem << ' ';
         q = (*q).sled;
@@ -70,7 +70,7 @@ void print(stk *top){
 }
 
 int main() {
-    stk *top = nullptr;
+    node *top = nullptr;
     postroenie_not_full_keyboard(&top);
     print(top);
     int b;
