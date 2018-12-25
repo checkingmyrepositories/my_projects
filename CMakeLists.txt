@@ -4,13 +4,12 @@ project(my_projects)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(my_projects
-        README.md "Kurdyumov Dima/h_stek.cpp")
-
-
+        README.md "Kurdyumov Dima/h_stek.cpp" )
 
 add_executable(h_stek "Kurdyumov Dima/h_stek.cpp")
 add_executable(lifo "Kurdyumov Dima/lifo.cpp")
 add_executable(fifo "Kurdyumov Dima/fifo.cpp")
 add_executable(Queue "Katynsus Sasha/Queue.cpp")
 add_executable(Stack "Katynsus Sasha/Stack.cpp")
+add_executable(zachet "Kurdyumov Dima/zachet.cpp")
 add_executable(intelligent_queue "Katynsus Sasha/intelligent_queue.cpp")
